@@ -12,8 +12,8 @@ using PuzzleShop.Core;
 namespace PuzzleShop.Core.Migrations
 {
     [DbContext(typeof(PuzzleShopContext))]
-    [Migration("20221017142315_init")]
-    partial class init
+    [Migration("20221017145655_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,29 @@ namespace PuzzleShop.Core.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "f1123faf-65fd-44b3-a465-cece9c0ec574",
+                            ConcurrencyStamp = "7a5719e7-ec33-4405-a81a-44fe2970b20f",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "b749fad4-cff6-43b5-95f0-cd6aba94334c",
+                            ConcurrencyStamp = "6da89679-428c-4f1e-b15a-7c34e03b810e",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "670d30c5-8162-46c4-91bd-edaefd92b04e",
+                            ConcurrencyStamp = "818b2ace-ed17-4e87-85ae-a0e398fbb1cc",
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -138,6 +161,38 @@ namespace PuzzleShop.Core.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "b3df9f0b-0abd-483c-a815-a7400508798b",
+                            RoleId = "f1123faf-65fd-44b3-a465-cece9c0ec574"
+                        },
+                        new
+                        {
+                            UserId = "b3df9f0b-0abd-483c-a815-a7400508798b",
+                            RoleId = "b749fad4-cff6-43b5-95f0-cd6aba94334c"
+                        },
+                        new
+                        {
+                            UserId = "b3df9f0b-0abd-483c-a815-a7400508798b",
+                            RoleId = "670d30c5-8162-46c4-91bd-edaefd92b04e"
+                        },
+                        new
+                        {
+                            UserId = "c31dbfc3-95c4-4701-a699-4b589bdda2ca",
+                            RoleId = "b749fad4-cff6-43b5-95f0-cd6aba94334c"
+                        },
+                        new
+                        {
+                            UserId = "c31dbfc3-95c4-4701-a699-4b589bdda2ca",
+                            RoleId = "670d30c5-8162-46c4-91bd-edaefd92b04e"
+                        },
+                        new
+                        {
+                            UserId = "e5d1255d-08e2-49e9-bf2f-5bec30c5229c",
+                            RoleId = "670d30c5-8162-46c4-91bd-edaefd92b04e"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -356,6 +411,56 @@ namespace PuzzleShop.Core.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "c31dbfc3-95c4-4701-a699-4b589bdda2ca",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "fdd669c9-bb5c-4197-bef7-4dec9d7fef9f",
+                            Email = "manager@puzzleshop.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MANAGER@PUZZLESHOP.COM",
+                            NormalizedUserName = "MANAGER@PUZZLESHOP.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK7aXS7WSTglNqtqUi+M5Wik6BYdqnVavmWDBH6rY/McY0jtNGQWcoCB9gat4eEJ1g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b5ef867f-b291-444b-868e-266a73d14ac1",
+                            TwoFactorEnabled = false,
+                            UserName = "manager@puzzleshop.com"
+                        },
+                        new
+                        {
+                            Id = "e5d1255d-08e2-49e9-bf2f-5bec30c5229c",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e2e2a8bc-5d91-4513-a3c4-1865ad386b8b",
+                            Email = "customer@puzzleshop.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CUSTOMER@PUZZLESHOP.COM",
+                            NormalizedUserName = "CUSTOMER@PUZZLESHOP.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPDzgmdRtPnAuPHRMMVhkGLI5Qt3Hw8F4CUZA7EYc7a8KtR+DeZfgDI/4km9frnrbg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "9eb121bc-c654-4883-8503-5983f66750ad",
+                            TwoFactorEnabled = false,
+                            UserName = "customer@puzzleshop.com"
+                        },
+                        new
+                        {
+                            Id = "b3df9f0b-0abd-483c-a815-a7400508798b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "31bbc6f5-f719-40f6-afcc-aaad07a85df3",
+                            Email = "admin@puzzleshop.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@PUZZLESHOP.COM",
+                            NormalizedUserName = "ADMIN@PUZZLESHOP.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGELXiaeeaQE3WD7ih3EmEyv3boUWjBKbpr839adOVnaUifaam+w/J4baAXe4wZlMA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7db2b157-8320-4a50-ba40-7bc5480ddf9f",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@puzzleshop.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

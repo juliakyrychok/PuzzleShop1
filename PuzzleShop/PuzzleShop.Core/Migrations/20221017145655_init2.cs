@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PuzzleShop.Core.Migrations
 {
-    public partial class init : Migration
+    public partial class init2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -256,6 +256,39 @@ namespace PuzzleShop.Core.Migrations
                         column: x => x.PuzzleId,
                         principalTable: "Puzzles",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "670d30c5-8162-46c4-91bd-edaefd92b04e", "818b2ace-ed17-4e87-85ae-a0e398fbb1cc", "Customer", "CUSTOMER" },
+                    { "b749fad4-cff6-43b5-95f0-cd6aba94334c", "6da89679-428c-4f1e-b15a-7c34e03b810e", "Manager", "MANAGER" },
+                    { "f1123faf-65fd-44b3-a465-cece9c0ec574", "7a5719e7-ec33-4405-a81a-44fe2970b20f", "Admin", "ADMIN" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "b3df9f0b-0abd-483c-a815-a7400508798b", 0, "31bbc6f5-f719-40f6-afcc-aaad07a85df3", "admin@puzzleshop.com", true, null, null, false, null, "ADMIN@PUZZLESHOP.COM", "ADMIN@PUZZLESHOP.COM", "AQAAAAEAACcQAAAAEGELXiaeeaQE3WD7ih3EmEyv3boUWjBKbpr839adOVnaUifaam+w/J4baAXe4wZlMA==", null, false, "7db2b157-8320-4a50-ba40-7bc5480ddf9f", false, "admin@puzzleshop.com" },
+                    { "c31dbfc3-95c4-4701-a699-4b589bdda2ca", 0, "fdd669c9-bb5c-4197-bef7-4dec9d7fef9f", "manager@puzzleshop.com", true, null, null, false, null, "MANAGER@PUZZLESHOP.COM", "MANAGER@PUZZLESHOP.COM", "AQAAAAEAACcQAAAAEK7aXS7WSTglNqtqUi+M5Wik6BYdqnVavmWDBH6rY/McY0jtNGQWcoCB9gat4eEJ1g==", null, false, "b5ef867f-b291-444b-868e-266a73d14ac1", false, "manager@puzzleshop.com" },
+                    { "e5d1255d-08e2-49e9-bf2f-5bec30c5229c", 0, "e2e2a8bc-5d91-4513-a3c4-1865ad386b8b", "customer@puzzleshop.com", true, null, null, false, null, "CUSTOMER@PUZZLESHOP.COM", "CUSTOMER@PUZZLESHOP.COM", "AQAAAAEAACcQAAAAEPDzgmdRtPnAuPHRMMVhkGLI5Qt3Hw8F4CUZA7EYc7a8KtR+DeZfgDI/4km9frnrbg==", null, false, "9eb121bc-c654-4883-8503-5983f66750ad", false, "customer@puzzleshop.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "670d30c5-8162-46c4-91bd-edaefd92b04e", "b3df9f0b-0abd-483c-a815-a7400508798b" },
+                    { "b749fad4-cff6-43b5-95f0-cd6aba94334c", "b3df9f0b-0abd-483c-a815-a7400508798b" },
+                    { "f1123faf-65fd-44b3-a465-cece9c0ec574", "b3df9f0b-0abd-483c-a815-a7400508798b" },
+                    { "670d30c5-8162-46c4-91bd-edaefd92b04e", "c31dbfc3-95c4-4701-a699-4b589bdda2ca" },
+                    { "b749fad4-cff6-43b5-95f0-cd6aba94334c", "c31dbfc3-95c4-4701-a699-4b589bdda2ca" },
+                    { "670d30c5-8162-46c4-91bd-edaefd92b04e", "e5d1255d-08e2-49e9-bf2f-5bec30c5229c" }
                 });
 
             migrationBuilder.CreateIndex(

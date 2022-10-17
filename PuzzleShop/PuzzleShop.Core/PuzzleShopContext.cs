@@ -10,6 +10,12 @@ namespace PuzzleShop.Core
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Seed();
+            base.OnModelCreating(builder);
+        }
+
         public DbSet<Puzzle> Puzzles { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Brand> Brands { get; set; }
