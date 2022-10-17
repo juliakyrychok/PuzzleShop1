@@ -9,5 +9,10 @@ namespace PuzzleShop.Core
             : base(options)
         {
         }
+
+        public DbSet<Puzzle> Puzzles { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<OrderList> OrderLists { get; set; }
     }
 }

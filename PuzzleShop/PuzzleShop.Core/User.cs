@@ -12,5 +12,6 @@ namespace PuzzleShop.Core
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public virtual ICollection<OrderItem>? OrderItems { get; set; }
     }
 }

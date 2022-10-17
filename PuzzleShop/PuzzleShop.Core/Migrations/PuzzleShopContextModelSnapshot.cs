@@ -159,6 +159,132 @@ namespace PuzzleShop.Core.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PuzzleShop.Core.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OrderListId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PuzzleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderListId");
+
+                    b.HasIndex("PuzzleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("OrderItem");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.OrderList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderLists");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.Puzzle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Articul")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Count")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImgPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Price")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoURL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Puzzles");
+                });
+
             modelBuilder.Entity("PuzzleShop.Core.User", b =>
                 {
                     b.Property<string>("Id")
@@ -279,6 +405,65 @@ namespace PuzzleShop.Core.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.OrderItem", b =>
+                {
+                    b.HasOne("PuzzleShop.Core.OrderList", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderListId");
+
+                    b.HasOne("PuzzleShop.Core.Puzzle", "Puzzle")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("PuzzleId");
+
+                    b.HasOne("PuzzleShop.Core.User", "User")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Puzzle");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.Puzzle", b =>
+                {
+                    b.HasOne("PuzzleShop.Core.Brand", "Brand")
+                        .WithMany("Puzzles")
+                        .HasForeignKey("BrandId");
+
+                    b.HasOne("PuzzleShop.Core.Country", "Country")
+                        .WithMany("Puzzles")
+                        .HasForeignKey("CountryId");
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.Brand", b =>
+                {
+                    b.Navigation("Puzzles");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.Country", b =>
+                {
+                    b.Navigation("Puzzles");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.OrderList", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.Puzzle", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("PuzzleShop.Core.User", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }
