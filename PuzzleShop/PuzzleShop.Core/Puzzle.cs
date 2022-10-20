@@ -14,10 +14,11 @@ namespace PuzzleShop.Core
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Articul { get; set; }
-        public string? Price { get; set; }
-        public string? Count { get; set; }
+        public double? Price { get; set; }
+        public int? Count { get; set; }
         public string? VideoURL { get; set; }
         public string? ImgPath { get; set; }
         public Country? Country { get; set; }

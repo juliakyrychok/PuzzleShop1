@@ -14,7 +14,7 @@ namespace PuzzleShop.Core
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime DateTime { get; set; }
-        public bool IsCompleted { get; set; }
+        public bool? IsCompleted { get; set; }
         public List<OrderItem>? OrderItems { get; set; }
     }
 }

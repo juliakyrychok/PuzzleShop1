@@ -15,6 +15,6 @@ namespace PuzzleShop.Core
         public int Id { get; set; }
         public User? User { get; set; }
         public Puzzle? Puzzle { get; set; }
-        public int Count { get; set; }
+        public int? Count { get; set; }
     }
 }
