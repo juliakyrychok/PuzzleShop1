@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PuzzleShop.Core;
+using PuzzleShop.Repos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<PuzzleShopContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<BrandRepository>();
+builder.Services.AddTransient<CountryRepository>();
+builder.Services.AddTransient<PuzzleRepository>();
 
 var app = builder.Build();
 

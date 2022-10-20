@@ -13,10 +13,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PuzzleShop.Core\PuzzleShop.Core.csproj" />
+    <ProjectReference Include="..\PuzzleShop.Repos\PuzzleShop.Repos.csproj" />
   </ItemGroup>
 
 </Project>
