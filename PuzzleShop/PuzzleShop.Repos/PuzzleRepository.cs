@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using PuzzleShop.Core;
 using PuzzleShop.Repos.Dto;
 using System;
@@ -16,9 +17,11 @@ namespace PuzzleShop.Repos
         private readonly BrandRepository _brandRepository;
         private readonly CountryRepository _countryRepository;
 
-        public PuzzleRepository(PuzzleShopContext ctx)
+        public PuzzleRepository(PuzzleShopContext ctx, BrandRepository _brandRepository, CountryRepository _countryRepository)
         {
             this.ctx = ctx;
+            this._brandRepository = _brandRepository;
+            this._countryRepository = _countryRepository;
         }
         public Puzzle GetPuzzleById(int id)
         {
@@ -56,6 +59,24 @@ namespace PuzzleShop.Repos
                 Country = countryFromDb
             };
             return await CreatePuzzleAsync(puzzle);
+        }
+        public PuzzleDto CreateDtoFromPuzzle(int id)
+        {
+            var puzzle = GetPuzzleById(id);
+            var puzzleDto = new PuzzleDto()
+            {
+                Id = id,
+                Name = puzzle.Name,
+                Description= puzzle.Description,
+                Articul= puzzle.Articul,
+                Price= puzzle.Price,
+                Count = puzzle.Count,
+                VideoURL = puzzle.VideoURL,
+                ImgPath = puzzle.ImgPath,
+                Country = puzzle.Country.Name,
+                Brand = puzzle.Brand.Name
+            };
+            return puzzleDto;
         }
         public async Task UpdatePuzzleAsync(PuzzleDto model, string brand, string country)
         {
