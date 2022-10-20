@@ -26,7 +26,7 @@ namespace PuzzleShop.Repos
         {
             return ctx.Countries.ToList();
         }
-        public async Task<Country> CreateCountryAcync(Country country)
+        public async Task<Country> CreateCountryAsync(Country country)
         {
             ctx.Countries.Add(country);
             await ctx.SaveChangesAsync();
